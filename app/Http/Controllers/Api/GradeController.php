@@ -27,7 +27,12 @@ class GradeController extends Controller
             
             DB::beginTransaction();
 
-            $grade = Grade::query()->create($request);
+            $nameToUppercase = strtoupper($request['name']);
+
+            $grade = Grade::query()->create([
+                'name' => $nameToUppercase,
+                'level' => $request['level'],
+            ]);
 
             DB::commit();
 
@@ -55,7 +60,13 @@ class GradeController extends Controller
             
             DB::beginTransaction();
 
+            if (isset($validatedData['name'])) {
+                $validatedData['name'] = strtoupper($validatedData['name']);
+            }
+
             $grade->update($validatedData);
+
+
 
             DB::commit();
 
