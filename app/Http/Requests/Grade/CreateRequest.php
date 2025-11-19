@@ -11,7 +11,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,27 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'unique:grades,name'],
+            'level' => ['required', 'integer'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama grade harus diisi.',
+            'name.string' => 'Nama grade harus berupa string.',
+            'name.unique' => 'Nama grade sudah terdaftar.',
+            'level.required' => 'Level grade harus diisi.',
+            'level.integer' => 'Level grade harus berupa angka.',
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'Nama grade',
+            'level' => 'Level grade',
         ];
     }
 }
