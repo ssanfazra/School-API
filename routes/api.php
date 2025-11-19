@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\MajorController;
+use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\AcademicYearController;
 
 Route::get('/user', function (Request $request) {
@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Academic years routes
     Route::apiResource('/academic-years', AcademicYearController::class);
 
-    // Major routes
-    Route::apiResource('/majors', MajorController::class);
+    // Grades routes
+    Route::apiResource('/grades', GradeController::class);
 
 });
