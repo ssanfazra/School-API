@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Grade;
 
+use App\Helpers\ResponseHelper;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CreateRequest extends FormRequest
 {
@@ -44,5 +47,10 @@ class CreateRequest extends FormRequest
             'name' => 'Nama grade',
             'level' => 'Level grade',
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(ResponseHelper::validationError($validator->errors()));
     }
 }

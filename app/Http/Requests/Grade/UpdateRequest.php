@@ -22,8 +22,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:grades,name,' . $this->grade->id],
-            'level' => ['required', 'integer'],
+            'name' => ['sometimes', 'required', 'string', 'unique:grades,name,' . $this->grade->id],
+            'level' => ['sometimes', 'required', 'integer'],
         ];
     }
 
