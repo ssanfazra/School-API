@@ -49,6 +49,10 @@ class GradeController extends Controller
 
     public function show(Grade $grade)
     {
+        if (!$grade) {
+            return ResponseHelper::error('Error', 'Grade not found', 404);
+        }
+
         return ResponseHelper::success(new GradeResource($grade), 'Grade retrieved successfully', 200);
     }
 
@@ -65,8 +69,6 @@ class GradeController extends Controller
             }
 
             $grade->update($validatedData);
-
-
 
             DB::commit();
 
