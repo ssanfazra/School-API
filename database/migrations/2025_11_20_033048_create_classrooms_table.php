@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('classrooms', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('academic_year_id')->constrained();
+            $table->foreignId('major_id')->constrained();
+            $table->foreignId('grade_id')->constrained();
+            $table->string('name');
+            $table->string('class_code');
+            $table->text('description')->nullable();
+            $table->unique(['academic_year_id', 'class_code']);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('classrooms');
+    }
+};

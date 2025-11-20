@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\AcademicYearController;
+use App\Http\Controllers\Api\ClassroomController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -27,5 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Grades routes
     Route::apiResource('/grades', GradeController::class);
+
+    // Classrooms routes
+    Route::apiResource('/classrooms', ClassroomController::class);
 
 });
