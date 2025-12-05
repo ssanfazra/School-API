@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClassroomResource;
 use App\Http\Requests\Classroom\CreateRequest;
+use App\Http\Requests\Classroom\UpdateRequest;
 
 class ClassroomController extends Controller
 {
@@ -72,15 +73,13 @@ class ClassroomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, Classroom $classroom)
     {
         $request = $request->validated();
         
         try {
             
             DB::beginTransaction();
-
-            $classroom = Classroom::query()->find($id);
 
             if (!$classroom) {
                 return ResponseHelper::error('Error', 'Classroom not found', 404);
@@ -114,14 +113,11 @@ class ClassroomController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Classroom $classroom)
     {
-        //
         try {
             
             DB::beginTransaction();
-
-            $classroom = Classroom::query()->find($id);
 
             if (!$classroom) {
                 return ResponseHelper::error('Error', 'Classroom not found', 404);

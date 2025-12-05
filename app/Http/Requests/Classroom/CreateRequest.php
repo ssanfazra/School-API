@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Classroom;
 
 use App\Helpers\ResponseHelper;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -30,7 +31,14 @@ class CreateRequest extends FormRequest
             'major_id' => ['required', 'exists:majors,id'],
             'grade_id' => ['required', 'exists:grades,id'],
             'name' => ['required', 'string', 'max:255'],
-            'class_code' => ['required', 'string', 'max:255', 'unique:classrooms,class_code'],
+            'class_code' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('classrooms', 'class_code')->where(function ($q) {
+                    return $q->where('academic_year_id', $this->academic_year_id);
+                }),
+            ],
             'description' => ['nullable', 'string', 'max:255'],
         ];
     }
