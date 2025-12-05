@@ -17,14 +17,17 @@ class ClassroomResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
-            'grade_id' => $this->grade_id,
-            'grade_name' => $this->grade->name,
-            'major_id' => $this->major_id,
-            'major_name' => $this->major->name,
-            'academic_year_id' => $this->academic_year_id,
-            'academic_year_name' => $this->academic_year->name,
             'class_code' => $this->class_code,
+            'description' => $this->description,
+            'grade' => $this->whenLoaded('grade', function () {
+                return new GradeResource($this->grade);
+            }),
+            'major' => $this->whenLoaded('major', function () {
+                return new MajorResource($this->major);
+            }),
+            'academic_year' => $this->whenLoaded('academicYear', function () {
+                return new AcademicYearResource($this->academicYear);
+            }),
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];

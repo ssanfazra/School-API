@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\AcademicYearController;
 use App\Http\Controllers\Api\ClassroomController;
+use App\Http\Controllers\Api\MajorController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,12 +25,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [AuthController::class, 'updateProfile']);
 
     // Academic years routes
-    Route::apiResource('/academic-years', AcademicYearController::class);
-
-    // Grades routes
-    Route::apiResource('/grades', GradeController::class);
+    
 
     // Classrooms routes
-    Route::apiResource('/classrooms', ClassroomController::class);
-
+    
 });
+Route::apiResource('/majors', MajorController::class);
+Route::apiResource('/academic-years', AcademicYearController::class);
+Route::apiResource('/grades', GradeController::class);
+Route::apiResource('/classrooms', ClassroomController::class);
