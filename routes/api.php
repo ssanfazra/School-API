@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\AcademicYearController;
 use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\MajorController;
+use App\Http\Controllers\Api\GuardianController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,6 +20,7 @@ Route::middleware(['throttle:5,1'])->group(function () {
 });
 
 // Protected routes
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/profile', [AuthController::class, 'profile']);
@@ -34,3 +36,4 @@ Route::apiResource('/majors', MajorController::class);
 Route::apiResource('/academic-years', AcademicYearController::class);
 Route::apiResource('/grades', GradeController::class);
 Route::apiResource('/classrooms', ClassroomController::class);
+Route::apiResource('/guardians', GuardianController::class);
