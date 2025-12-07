@@ -45,4 +45,9 @@ class UpdateRequest extends FormRequest
             'level' => 'Level grade',
         ];
     }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(ResponseHelper::validationError($validator->errors()));
+    }
 }
