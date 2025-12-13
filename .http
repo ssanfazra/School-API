@@ -1,0 +1,124 @@
+### Classroom
+GET http://localhost:8000/api/classrooms
+Content-Type: application/json
+
+### Create classroom
+POST http://localhost:8000/api/classrooms
+Content-Type: application/json
+
+{
+    "academic_year_id": 1,
+    "major_id": 1,
+    "grade_id": 1,
+    "name": "X RPL 1",
+    "class_code": "X-RPL-1",
+    "description": "X RPL 1"
+}
+
+### Update classroom
+PUT http://localhost:8000/api/classrooms/1
+Content-Type: application/json
+
+{
+    "academic_year_id": 1,
+    "major_id": 1,
+    "grade_id": 1,
+    "name": "X RPL 1",
+    "class_code": "X-RPL-1",
+    "description": "X RPL 1"
+}
+
+### Delete classroom
+DELETE http://localhost:8000/api/classrooms/1
+Content-Type: application/json
+
+### Guardian
+GET http://localhost:8000/api/guardians
+Content-Type: application/json
+
+### Create guardian
+POST http://localhost:8000/api/guardians
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "nik": "1234567890123456",
+    "name": "Guardian Name",
+    "phone": "08123456789",
+    "address": "Guardian Address",
+    "occupation": "Guardian Occupation",
+    "is_active": true
+}
+
+### Update guardian
+PUT http://localhost:8000/api/guardians/1
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "nik": "1234567890123456",
+    "name": "Guardian Name",
+    "phone": "08123456789",
+    "address": "Guardian Address",
+    "is_active": true
+}
+
+### Delete guardian
+DELETE http://localhost:8000/api/guardians/1
+Content-Type: application/json
+
+### Fetch all students
+GET http://localhost:8000/api/students
+Content-Type: application/json
+
+### Create student
+POST http://localhost:8000/api/students
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "current_academic_year_id": 1,
+    "current_major_id": 1,
+    "current_grade_id": 1,
+    "current_classroom_id": 2,
+    "guardian_id": 2,
+    "nis": "1234567890123456",
+    "name": "Student Name",
+    "gender": "male",
+    "religion": "islam",
+    "blood_type": "O",
+    "birth_place": "Jakarta",
+    "birth_date": "2005-01-01",
+    "phone": "08123456789",
+    "address": "Student Address"
+}
+
+### Show student
+GET http://localhost:8000/api/students/1
+Content-Type: application/json
+
+### Update student
+PUT http://localhost:8000/api/students/2
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "current_academic_year_id": 1,
+    "current_major_id": 1,
+    "current_grade_id": 1,
+    "current_classroom_id": 2,
+    "guardian_id": 2,
+    "nis": "1234567890123456",
+    "name": "Student Name",
+    "gender": "male",
+    "religion": "islam",
+    "blood_type": "O",
+    "birth_place": "Jakarta",
+    "birth_date": "2005-01-01",
+    "phone": "08123456789",
+    "address": "Student Address"
+}
+
+### Delete student
+DELETE http://localhost:8000/api/students/1
+Content-Type: application/json
