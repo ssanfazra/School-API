@@ -4,10 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GradeController;
-use App\Http\Controllers\Api\AcademicYearController;
-use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\MajorController;
+use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\GuardianController;
+use App\Http\Controllers\Api\ClassroomController;
+use App\Http\Controllers\Api\AcademicYearController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -37,3 +38,5 @@ Route::apiResource('/academic-years', AcademicYearController::class);
 Route::apiResource('/grades', GradeController::class);
 Route::apiResource('/classrooms', ClassroomController::class);
 Route::apiResource('/guardians', GuardianController::class);
+Route::apiResource('/students', StudentController::class);
+
